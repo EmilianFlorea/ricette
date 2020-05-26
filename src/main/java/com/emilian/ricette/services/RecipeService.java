@@ -4,15 +4,17 @@ import com.emilian.ricette.Bin;
 import com.emilian.ricette.domain.Recipe;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.BinaryOperator;
 
 @Service
 public class RecipeService {
 
     private final AtomicLong counter = new AtomicLong();
-    private HashMap<Long, Recipe> recipesList = new HashMap<Long, Recipe>();
+    private final HashMap<Long, Recipe> recipesList = new HashMap<>();
 
     public Bin addRecipe(Bin postBin) {
         long id = counter.incrementAndGet();
@@ -42,11 +44,14 @@ public class RecipeService {
 
 
     //TODO: da implementare
-    public Bin updateRecipe(Bin recipe) {
-        return recipe;
+    public Bin updateRecipe(Long id, Bin recipe) {
+        if (recipesList.containsKey(id))
+            return recipesList.get(id).updateRecipe(recipe);
+        else
+            return null;
     }
 
     public void delete(Long id) {
-
+        recipesList.remove(id);
     }
 }

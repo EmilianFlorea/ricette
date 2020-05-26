@@ -19,7 +19,7 @@ public class Recipe {
         this.author = recipeBin.author;
         this.preparationTime = recipeBin.preparationTime;
         this.serving = recipeBin.serving;
-        this.ingredients = new ArrayList(recipeBin.ingredients);
+        this.ingredients = new ArrayList<>(recipeBin.ingredients);
         this.instructions = recipeBin.instructions;
     }
 
@@ -64,11 +64,11 @@ public class Recipe {
         this.serving = serving;
     }
 
-    public List getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = (ArrayList<String>) ingredients;
     }
 
@@ -90,6 +90,21 @@ public class Recipe {
         bin.ingredients = (ArrayList<String>) this.getIngredients();
         bin.instructions = this.getInstructions();
         return bin;
+    }
+
+    public Bin updateRecipe(Bin updateBin){
+       if (updateBin.author!=null)
+           this.setAuthor(updateBin.author);
+       if (updateBin.preparationTime > 0)
+           this.setPreparationTime(updateBin.preparationTime);
+       if (updateBin.serving > 0)
+           this.setServing(updateBin.serving);
+        if (updateBin.ingredients.size()>0)
+            this.setIngredients(updateBin.ingredients);
+        if (instructions!=null)
+            this.setInstructions(updateBin.instructions);
+
+        return getBin();
     }
 
 }
