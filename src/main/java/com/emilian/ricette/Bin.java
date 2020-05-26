@@ -1,14 +1,18 @@
 package com.emilian.ricette;
 
-import java.util.ArrayList;
+import com.emilian.ricette.resource.model.RicettaDettaglioResource;
+import com.emilian.ricette.resource.model.RicettaResource;
 
 public class Bin {
 
-    public Long id;
-    public String author;
-    public Integer preparationTime;
-    public Integer serving;
-    public ArrayList<String> ingredients;
-    public String instructions;
+    public Long recipeId;
+    public RicettaDettaglioResource dettaglioResource;
+    public RicettaResource ricettaResource;
+
+    public Bin(Long recipeId, RicettaDettaglioResource dettaglioResource, RicettaResource ricettaResource) {
+        this.recipeId = recipeId;
+        this.dettaglioResource = dettaglioResource;
+        this.ricettaResource = ricettaResource;
+    }
 
 }

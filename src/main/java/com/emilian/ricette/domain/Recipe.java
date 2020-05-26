@@ -8,20 +8,12 @@ import java.util.List;
 public class Recipe {
 
     private Long recipeId;
+    private String recipeName;
     private String author;
     private Integer preparationTime;
     private Integer serving;
-    private ArrayList<String> ingredients;
+    private List<String> ingredients;
     private String instructions;
-
-    public Recipe(Bin recipeBin){
-        this.recipeId = recipeBin.id;
-        this.author = recipeBin.author;
-        this.preparationTime = recipeBin.preparationTime;
-        this.serving = recipeBin.serving;
-        this.ingredients = new ArrayList(recipeBin.ingredients);
-        this.instructions = recipeBin.instructions;
-    }
 
     public Recipe(Long recipeId, String author, Integer preparationTime, Integer serving, ArrayList<String> ingredients, String instructions) {
         this.recipeId = recipeId;
@@ -38,6 +30,14 @@ public class Recipe {
 
     public void setRecipeId(Long recipeId) {
         this.recipeId = recipeId;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
     public String getAuthor() {
@@ -64,11 +64,11 @@ public class Recipe {
         this.serving = serving;
     }
 
-    public List getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = (ArrayList<String>) ingredients;
     }
 
@@ -80,16 +80,5 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-
-    public Bin getBin() {
-        Bin bin = new Bin();
-        bin.id = this.getRecipeId();
-        bin.author = this.getAuthor();
-        bin.preparationTime = this.getPreparationTime();
-        bin.serving = this.getServing();
-        bin.ingredients = (ArrayList<String>) this.getIngredients();
-        bin.instructions = this.getInstructions();
-        return bin;
-    }
 
 }
